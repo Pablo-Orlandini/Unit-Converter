@@ -378,7 +378,6 @@ let conversor=[
         args:{val:{name:'Valor',v:0},tnc:{name:'Temperatura Normal en °C',v:0},trc:{name:'Temperatura Real en °C',v:0},pnhp:{name:'Presión Normal en hPa',v:0},prhp:{name:'Presión Real en hPa',v:0}},
         conversion(args){return args.val.v*1000/(args.prhp.v*(args.tnc.v+273)/(args.pnhp.v*(args.trc.v+273)))},
         note:'Muestra Gaseosa'},
-
     ]},
 
     {unit: 'mg/Nm3', 
@@ -408,7 +407,6 @@ let conversor=[
         args:{val:{name:'Valor',v:0},tnc:{name:'Temperatura Normal en °C',v:0},trc:{name:'Temperatura Real en °C',v:0},pnhp:{name:'Presión Normal en hPa',v:0},prhp:{name:'Presión Real en hPa',v:0}},
         conversion(args){return args.val.v*(args.prhp.v*(args.tnc.v+273)/(args.pnhp.v*(args.trc.v+273)*1000))},
         note:'Muestra Gaseosa'},	
-
     ]},
 
     {unit: 'ppm', 
@@ -514,6 +512,7 @@ dropUnits.onchange = function(){
         extraArgs.innerHTML = '' //esto es para el comportamiento de los argumentos extra
     }
     result.innerHTML = ''
+    notes.innerHTML=''
 }
 //
 
@@ -530,6 +529,7 @@ function argus(unit,finalUnit){
         args+= '<label for="'+arg+'">'+conv[arg].name+': </label><input name="'+arg+'" id="'+arg+'" type="number"><br>'
         }
     }
+    
     extraArgs.innerHTML = '<br>'+ args  
 
     if(convSelector(unit,finalUnit).note!==''){
@@ -586,7 +586,7 @@ function convert(unit,finalUnit){
         if(arg=='') check = false
     }
     
-    result.innerHTML = check? convSetted.conversion(convSetted.args) : ''
+    result.innerHTML = check? Math.round(convSetted.conversion(convSetted.args)*10000)/10000 : ''
     conect.innerHTML = check? '=' : 'a'
     toconvert.innerHTML = check? '' : 'Convertir ' 
 }
