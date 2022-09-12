@@ -16,11 +16,13 @@ h1{
 #first{
     padding: 20px 40px 40px 40px;
     background-color:lightsteelblue;
-    border-radius: 10px;
-    width:fit-content;
-    margin: 0 auto;
+    border-radius: 5px;
+    min-width: 550px;
+    width: fit-content;
     min-height: 140px;
     height: fit-content;
+    margin: 0 auto;
+    text-align: center;
 }
 
 #result {
@@ -47,7 +49,6 @@ select{
     width: 100px;
     padding: 0px;
     border: 1px;
-    border-color: blue;
     margin: 10px 0px 10px 0px    
 }
 

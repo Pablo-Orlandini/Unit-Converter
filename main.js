@@ -64,7 +64,7 @@ let conversor=[
 
         {finalUnit:'ppm', 
         args:{val:{name:'Valor',v:0},dgL:{name:'Densidad en g/L',v:0}},
-        conversion(args){return args.val.v*1000000/(0,1*args.dgL.v)},
+        conversion(args){return args.val.v*1000000/(0.1*args.dgL.v)},
         note:''},	
         
         {finalUnit:'µg/m3', 
@@ -205,7 +205,7 @@ let conversor=[
 
         {finalUnit:'ppm', 
         args:{val:{name:'Valor',v:0},PM:{name:'Peso Molecular',v:0},trc:{name:'Temperatura Real en °C',v:0},prhp:{name:'Presión Real en hPa',v:0}},
-        conversion(args){return (args.val.v/(1000*args.PM.v))*8,314472*(args.trc.v+273)/(args.prhp.v/10)},
+        conversion(args){return (args.val.v/(1000*args.PM.v))*8.314472*(args.trc.v+273)/(args.prhp.v/10)},
         note:'Muestra Gaseosa'},	
 
         {finalUnit:'%p/p', 
@@ -361,7 +361,7 @@ let conversor=[
 
         {finalUnit:'ppm', 
         args:{val:{name:'Valor',v:0},PM:{name:'Peso Molecular',v:0},trc:{name:'Temperatura Real en °C',v:0},prhp:{name:'Presión Real en hPa',v:0}},
-        conversion(args){return (args.val.v/(1000*args.PM.v))*8,314472*(args.trc.v+273)/(args.prhp.v/10000)},
+        conversion(args){return (args.val.v/(1000*args.PM.v))*8.314472*(args.trc.v+273)/(args.prhp.v/10000)},
         note:'Muestra Gaseosa'},	
 
         {finalUnit:'mg/Kg', 
@@ -395,7 +395,7 @@ let conversor=[
 
         {finalUnit:'ppm', 
         args:{val:{name:'Valor',v:0},PM:{name:'Peso Molecular',v:0},tnc:{name:'Temperatura Normal en °C',v:0},trc:{name:'Temperatura Real en °C',v:0},pnhp:{name:'Presión Normal en hPa',v:0},prhp:{name:'Presión Real en hPa',v:0}},
-        conversion (args){return args.val.v*(args.prhp.v*(args.tnc.v+273)/(args.pnhp.v*(args.trc.v+273)))*(8,314472*(args.trc.v+273))/((args.prhp.v/10)*args.PM.v)},
+        conversion (args){return args.val.v*(args.prhp.v*(args.tnc.v+273)/(args.pnhp.v*(args.trc.v+273)))*(8.314472*(args.trc.v+273))/((args.prhp.v/10)*args.PM.v)},
         note:'Muestra Gaseosa'},	
 
         {finalUnit:'mg/m3', 
@@ -414,12 +414,12 @@ let conversor=[
     conversions:[	
         {finalUnit:'mg/Nm3', 
         args:{val:{name:'Valor',v:0},PM:{name:'Peso Molecular',v:0},tnc:{name:'Temperatura Normal en °C',v:0},trc:{name:'Temperatura Real en °C',v:0},pnhp:{name:'Presión Normal en hPa',v:0},prhp:{name:'Presión Real en hPa',v:0}},
-        conversion(args){return (args.val.v*(args.prhp.v/10)*args.PM.v/(8,314472*(args.trc.v+273)))/(args.prhp.v*(args.tnc.v+273)/(args.pnhp.v*(args.trc.v+273)))},
+        conversion(args){return (args.val.v*(args.prhp.v/10)*args.PM.v/(8.314472*(args.trc.v+273)))/(args.prhp.v*(args.tnc.v+273)/(args.pnhp.v*(args.trc.v+273)))},
         note:'Muestra Gaseosa'},	
 
         {finalUnit:'mg/m3', 
         args:{val:{name:'Valor',v:0},PM:{name:'Peso Molecular',v:0},trc:{name:'Temperatura Real en °C',v:0},prhp:{name:'Presión Real en hPa',v:0}},
-        conversion(args){return args.val.v*(args.prhp.v/10)*args.PM.v/(8,314472*(args.trc.v+273))},
+        conversion(args){return args.val.v*(args.prhp.v/10)*args.PM.v/(8.314472*(args.trc.v+273))},
         note:'Muestra Gaseosa'},	
 
         {finalUnit:'mg/L', 
@@ -439,7 +439,7 @@ let conversor=[
         
         {finalUnit:'%p/v', 
         args:{val:{name:'Valor',v:0},dgL:{name:'Densidad en g/L',v:0}},
-        conversion(args){return args.val.v*0,1*args.dgL.v/1000000},
+        conversion(args){return args.val.v*0.1*args.dgL.v/1000000},
         note:''},	
 
         {finalUnit:'µg/Kg', 
@@ -454,7 +454,7 @@ let conversor=[
         
         {finalUnit:'µg/m3', 
         args:{val:{name:'Valor',v:0},PM:{name:'Peso Molecular',v:0},trc:{name:'Temperatura Real en °C',v:0},prhp:{name:'Presión Real en hPa',v:0}},
-        conversion(args){return args.val.v*(args.prhp.v/10)*args.PM.v*1000/(8,314472*(args.trc.v+273))},
+        conversion(args){return args.val.v*(args.prhp.v/10)*args.PM.v*1000/(8.314472*(args.trc.v+273))},
         note:'Muestra Gaseosa'},
     ]},
 
@@ -575,12 +575,12 @@ function convert(unit,finalUnit){
         for (arg in conv){
             if(arg!=='val'){
                 let el = document.getElementById(arg)
-                conv[arg].v = el.value ? el.value : ''
+                conv[arg].v = el.value ? Number(el.value) : '' // si no transformo en Number, cuando forma parte de una suma me lo suma como string.
                 checkValue.push(el.value)
             }
         }
         
-    let convSetted = convSelector(unit,finalUnit)
+    let convSetted = convSelector(unit,finalUnit)       
 
     for(arg of checkValue){
         if(arg=='') check = false
