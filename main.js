@@ -1,13 +1,13 @@
-// Este es el array que contiene un objeto por cada unidad a convertir en otras. Este objeto contiene a su vez objetos para cada conversión, ubicados en una propiedad que los agrupa ebn un array (conversions:[...])
+// Este es el array que contiene un objeto por cada unidad a convertir en otras. Este objeto contiene a su vez objetos para cada conversión.
 let conversor=[
-
+    // Objeto para todas las converisones de %p/p. Contiene dos propiedades, el nombre de la unidad a convertir (unit:) y el array de los objetos para cada conversión (conversions:). 
     {unit: '%p/p', 
-
+    // Array de los objetos con toda la información para cada conversión de %p/p:
     conversions:[	
         {finalUnit:'mg/m3', 
-        args:{val:{name:'Valor',v:0},dgL:{name:'Densidad en g/L',v:0}},
-        conversion(args){return args.val.v*10000*args.dgL.v},
-        note:''},	
+        args:{val:{name:'Valor',v:0},dgL:{name:'Densidad en g/L',v:0}}, // Objeto con todos los argumentos de la conversión, cada uno como un objeto con dos propiedades, nombre (name:) y valor (value:).
+        conversion(args){return args.val.v*10000*args.dgL.v}, // Fórmula para la conversión de %p/p a mg/m3, tomando los argumentos dle objeto args.
+        note:''}, // Nota de esta conversión en particular.	
 
         {finalUnit:'mg/L', 
         args:{val:{name:'Valor',v:0},dgL:{name:'Densidad en g/L',v:0}},
@@ -137,7 +137,7 @@ let conversor=[
         {finalUnit:'mg/Nm3', 
         args:{val:{name:'Valor',v:0},tnc:{name:'Temperatura Normal en °C',v:0},trc:{name:'Temperatura Real en °C',v:0},pnhp:{name:'Presión Normal en hPa',v:0},prhp:{name:'Presión Real en hPa',v:0}},
         conversion(args){return args.val.v/(args.prhp.v*(args.tnc.v+273)/(args.pnhp.v*(args.trc.v+273)))},
-        note:'Muestra Gaseosa'},	
+        note:'Esta conversión es para una muestra gaseosa.'},	
 
         {finalUnit:'mg/m3', 
         args:{val:{name:'Valor',v:0}},
@@ -186,7 +186,7 @@ let conversor=[
         {finalUnit:'mg/Nm3', 
         args:{val:{name:'Valor',v:0},tnc:{name:'Temperatura Normal en °C',v:0},trc:{name:'Temperatura Real en °C',v:0},pnhp:{name:'Presión Normal en hPa',v:0},prhp:{name:'Presión Real en hPa',v:0}},
         conversion(args){return args.val.v/(args.prhp.v*1000*(args.tnc.v+273)/(args.pnhp.v*(args.trc.v+273)))},
-        note:'Muestra Gaseosa'},	
+        note:'Esta conversión es para una muestra gaseosa.'},	
 
         {finalUnit:'mg/m3', 
         args:{val:{name:'Valor',v:0}},
@@ -206,7 +206,7 @@ let conversor=[
         {finalUnit:'ppm', 
         args:{val:{name:'Valor',v:0},PM:{name:'Peso Molecular',v:0},trc:{name:'Temperatura Real en °C',v:0},prhp:{name:'Presión Real en hPa',v:0}},
         conversion(args){return (args.val.v/(1000*args.PM.v))*8.314472*(args.trc.v+273)/(args.prhp.v/10)},
-        note:'Muestra Gaseosa'},	
+        note:'Esta conversión es para una muestra gaseosa.'},	
 
         {finalUnit:'%p/p', 
         args:{val:{name:'Valor',v:0},dgL:{name:'Densidad en g/L',v:0}},
@@ -231,7 +231,7 @@ let conversor=[
         {finalUnit:'µg/Nm3', 
         args:{val:{name:'Valor',v:0},tnc:{name:'Temperatura Normal en °C',v:0},trc:{name:'Temperatura Real en °C',v:0},pnhp:{name:'Presión Normal en hPa',v:0},prhp:{name:'Presión Real en hPa',v:0}},
         conversion(args){return args.val.v/(args.prhp.v*(args.tnc.v+273)/(args.pnhp.v*(args.trc.v+273)))},
-        note:'Muestra Gaseosa'},	
+        note:'Esta conversión es para una muestra gaseosa.'},	
     ]},
 
     {unit: 'mg/Kg', 
@@ -284,7 +284,7 @@ let conversor=[
         {finalUnit:'mg/Nm3', 
         args:{val:{name:'Valor',v:0},tnc:{name:'Temperatura Normal en °C',v:0},trc:{name:'Temperatura Real en °C',v:0},pnhp:{name:'Presión Normal en hPa',v:0},prhp:{name:'Presión Real en hPa',v:0}},
         conversion(args){return (args.val.v/(args.prhp.v*(args.tnc.v+273)/(args.pnhp.v*(args.trc.v+273))))*1000},
-        note:'Muestra Gaseosa'},	
+        note:'Esta conversión es para una muestra gaseosa.'},	
 
         {finalUnit:'mg/m3', 
         args:{val:{name:'Valor',v:0}},
@@ -332,7 +332,7 @@ let conversor=[
         {finalUnit:'mg/Nm3', 
         args:{val:{name:'Valor',v:0},tnc:{name:'Temperatura Normal en °C',v:0},trc:{name:'Temperatura Real en °C',v:0},pnhp:{name:'Presión Normal en hPa',v:0},prhp:{name:'Presión Real en hPa',v:0}},
         conversion(args){return args.val.v/(args.prhp.v*(args.tnc.v+273)/(args.pnhp.v*(args.trc.v+273)))},
-        note:'Muestra Gaseosa'},	
+        note:'Esta conversión es para una muestra gaseosa.'},	
 
         {finalUnit:'%p/p', 
         args:{val:{name:'Valor',v:0},dgL:{name:'Densidad en g/L',v:0}},
@@ -362,7 +362,7 @@ let conversor=[
         {finalUnit:'ppm', 
         args:{val:{name:'Valor',v:0},PM:{name:'Peso Molecular',v:0},trc:{name:'Temperatura Real en °C',v:0},prhp:{name:'Presión Real en hPa',v:0}},
         conversion(args){return (args.val.v/(1000*args.PM.v))*8.314472*(args.trc.v+273)/(args.prhp.v/10000)},
-        note:'Muestra Gaseosa'},	
+        note:'Esta conversión es para una muestra gaseosa.'},	
 
         {finalUnit:'mg/Kg', 
         args:{val:{name:'Valor',v:0},dgL: {name:'Densidad en g/L',v:0}},
@@ -377,7 +377,7 @@ let conversor=[
         {finalUnit:'µg/Nm3', 
         args:{val:{name:'Valor',v:0},tnc:{name:'Temperatura Normal en °C',v:0},trc:{name:'Temperatura Real en °C',v:0},pnhp:{name:'Presión Normal en hPa',v:0},prhp:{name:'Presión Real en hPa',v:0}},
         conversion(args){return args.val.v*1000/(args.prhp.v*(args.tnc.v+273)/(args.pnhp.v*(args.trc.v+273)))},
-        note:'Muestra Gaseosa'},
+        note:'Esta conversión es para una muestra gaseosa.'},
     ]},
 
     {unit: 'mg/Nm3', 
@@ -386,27 +386,27 @@ let conversor=[
         {finalUnit:'µg/L', 
         args:{val:{name:'Valor',v:0},tnc:{name:'Temperatura Normal en °C',v:0},trc:{name:'Temperatura Real en °C',v:0},pnhp:{name:'Presión Normal en hPa',v:0},prhp:{name:'Presión Real en hPa',v:0}},
         conversion (args){return args.val.v*(args.prhp.v*(args.tnc.v+273)/(args.pnhp.v*(args.trc.v+273)))},
-        note:'Muestra Gaseosa'},	
+        note:'Esta conversión es para una muestra gaseosa.'},	
 
         {finalUnit:'µg/m3', 
         args:{val:{name:'Valor',v:0},tnc:{name:'Temperatura Normal en °C',v:0},trc:{name:'Temperatura Real en °C',v:0},pnhp:{name:'Presión Normal en hPa',v:0},prhp:{name:'Presión Real en hPa',v:0}},
         conversion (args){return args.val.v*1000*(args.prhp.v*(args.tnc.v+273)/(args.pnhp.v*(args.trc.v+273)))},
-        note:'Muestra Gaseosa'},	
+        note:'Esta conversión es para una muestra gaseosa.'},	
 
         {finalUnit:'ppm', 
         args:{val:{name:'Valor',v:0},PM:{name:'Peso Molecular',v:0},tnc:{name:'Temperatura Normal en °C',v:0},trc:{name:'Temperatura Real en °C',v:0},pnhp:{name:'Presión Normal en hPa',v:0},prhp:{name:'Presión Real en hPa',v:0}},
         conversion (args){return args.val.v*(args.prhp.v*(args.tnc.v+273)/(args.pnhp.v*(args.trc.v+273)))*(8.314472*(args.trc.v+273))/((args.prhp.v/10)*args.PM.v)},
-        note:'Muestra Gaseosa'},	
+        note:'Esta conversión es para una muestra gaseosa.'},	
 
         {finalUnit:'mg/m3', 
         args:{val:{name:'Valor',v:0},tnc:{name:'Temperatura Normal en °C',v:0},trc:{name:'Temperatura Real en °C',v:0},pnhp:{name:'Presión Normal en hPa',v:0},prhp:{name:'Presión Real en hPa',v:0}},
         conversion(args){return args.val.v*(args.prhp.v*(args.tnc.v+273)/(args.pnhp.v*(args.trc.v+273)))},
-        note:'Muestra Gaseosa'},	
+        note:'Esta conversión es para una muestra gaseosa.'},	
 
         {finalUnit:'mg/L', 
         args:{val:{name:'Valor',v:0},tnc:{name:'Temperatura Normal en °C',v:0},trc:{name:'Temperatura Real en °C',v:0},pnhp:{name:'Presión Normal en hPa',v:0},prhp:{name:'Presión Real en hPa',v:0}},
         conversion(args){return args.val.v*(args.prhp.v*(args.tnc.v+273)/(args.pnhp.v*(args.trc.v+273)*1000))},
-        note:'Muestra Gaseosa'},	
+        note:'Esta conversión es para una muestra gaseosa.'},	
     ]},
 
     {unit: 'ppm', 
@@ -415,12 +415,12 @@ let conversor=[
         {finalUnit:'mg/Nm3', 
         args:{val:{name:'Valor',v:0},PM:{name:'Peso Molecular',v:0},tnc:{name:'Temperatura Normal en °C',v:0},trc:{name:'Temperatura Real en °C',v:0},pnhp:{name:'Presión Normal en hPa',v:0},prhp:{name:'Presión Real en hPa',v:0}},
         conversion(args){return (args.val.v*(args.prhp.v/10)*args.PM.v/(8.314472*(args.trc.v+273)))/(args.prhp.v*(args.tnc.v+273)/(args.pnhp.v*(args.trc.v+273)))},
-        note:'Muestra Gaseosa'},	
+        note:'Esta conversión es para una muestra gaseosa.'},	
 
         {finalUnit:'mg/m3', 
         args:{val:{name:'Valor',v:0},PM:{name:'Peso Molecular',v:0},trc:{name:'Temperatura Real en °C',v:0},prhp:{name:'Presión Real en hPa',v:0}},
         conversion(args){return args.val.v*(args.prhp.v/10)*args.PM.v/(8.314472*(args.trc.v+273))},
-        note:'Muestra Gaseosa'},	
+        note:'Esta conversión es para una muestra gaseosa.'},	
 
         {finalUnit:'mg/L', 
         args:{val:{name:'Valor',v:0},dgL:{name:'Densidad en g/L',v:0}},
@@ -455,7 +455,7 @@ let conversor=[
         {finalUnit:'µg/m3', 
         args:{val:{name:'Valor',v:0},PM:{name:'Peso Molecular',v:0},trc:{name:'Temperatura Real en °C',v:0},prhp:{name:'Presión Real en hPa',v:0}},
         conversion(args){return args.val.v*(args.prhp.v/10)*args.PM.v*1000/(8.314472*(args.trc.v+273))},
-        note:'Muestra Gaseosa'},
+        note:'Esta conversión es para una muestra gaseosa.'},
     ]},
 
 ];
@@ -484,6 +484,7 @@ let dropFinalUnits = document.getElementById('finalUnit')
 let result = document.getElementById('result')
 let conect = document.getElementById('conect')
 let toconvert = document.getElementById('toconvert')
+let notes = document.getElementById('notes')
 
 toconvert.innerHTML = 'Convertir ' //conect y toconvert son dos spans dinámicos cosméticos, verlos como algo aislado del resto del código
 conect.innerHTML = 'a'
@@ -539,6 +540,11 @@ function argus(unit,finalUnit){
 
                         /* Esto también se ocupa de la renderización del resultado cada vez que cambia un campo o selecciono la unidad estino */
 dropFinalUnits.onchange = function(){
+    if(!dropFinalUnits.value){ // Esto es para que cuando selecciono '' en dropFinalUnits ponga 'Convertir y 'a' nuevamente si tenía seleccionada otra unidad antes.
+        conect.innerHTML ='a'
+        toconvert.innerHTML = 'Convertir '
+        notes.innerHTML = ''
+    }
     if(finalUnit.value){
     argus(unit.value,finalUnit.value)
     } else {
@@ -588,6 +594,6 @@ function convert(unit,finalUnit){
     
     result.innerHTML = check? Math.round(convSetted.conversion(convSetted.args)*10000)/10000 : ''
     conect.innerHTML = check? '=' : 'a'
-    toconvert.innerHTML = check? '' : 'Convertir ' 
+    toconvert.innerHTML = check? '' : 'Convertir' 
 }
 //
